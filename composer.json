@@ -1,0 +1,17 @@
+{
+  "name": "atlant5/handpicked_widget",
+  "description": "Widget (helper) for Yii2. Based on bootstrap.",
+  "license": "GPL",
+  "authors": [
+    {
+      "name": "Evgeny Vetrov",
+      "email": "post.vetrov@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "autoload": {
+    "classmap": ["src"]
+  }
+}
