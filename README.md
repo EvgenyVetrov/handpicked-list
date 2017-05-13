@@ -7,5 +7,5 @@ Features:
 2. easy search in elements
 3. bootstrap admin LTE integration
 
-On GitHub: https://github.com/EvgenyVetrov/handpicked-widget  
-On Packagist: https://packagist.org/packages/atlant5/handpicked-widget
+On GitHub: https://github.com/EvgenyVetrov/handpicked-list  
+On Packagist: https://packagist.org/packages/atlant5/handpicked-list

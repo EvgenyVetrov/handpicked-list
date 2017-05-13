@@ -19,9 +19,10 @@
     "extension",
     "widget",
     "handpicked",
-    "handpicked-widget",
-    "handpicked widget",
-    "selector"
+    "handpicked-list",
+    "handpicked list",
+    "selector",
+    "list"
   ],
   "homepage": "https://github.com/EvgenyVetrov/handpicked-list",
   "require": {

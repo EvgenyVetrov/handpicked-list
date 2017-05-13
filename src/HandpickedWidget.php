@@ -6,10 +6,10 @@
  * Date: 13.05.17
  * Time: 0:54
  */
-class HandpickedWidget
+class HandpickedList
 {
     public function __construct()
     {
-        return "HandpickedWidget go";
+        return "HandpickedList go";
     }
 }
