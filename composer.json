@@ -2,6 +2,7 @@
   "name": "atlant5/handpicked-list",
   "description": "Widget (helper) for Yii2. Based on bootstrap. Help you build admin interface. You can select some elements in pretty pop-up and see selected items in another pretty compact interface.",
   "license": "GPL",
+  "version": "0.0.170513",
   "authors": [
     {
       "name": "Evgeny Vetrov",
