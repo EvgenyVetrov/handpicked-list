@@ -6,7 +6,7 @@
  * Time: 13:43
  */
 
-namespace atlant5\HandpickedListAssets;
+namespace atlant5\handpickedlist;
 use yii\web\AssetBundle;
 
 
