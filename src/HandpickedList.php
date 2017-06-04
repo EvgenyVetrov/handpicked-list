@@ -59,10 +59,10 @@ class HandpickedList extends Widget
      * key - column
      * value - value
      * @var array
+     *
+     * old property
      */
-    public $checkedRules = ['checked' => true, 'active' => true];
-
-    public $bgLabels = ['bg-aqua', 'bg-blue', '']; // бэкграунды лейблов, меняются по очереди
+    //public $checkedRules = ['checked' => true, 'active' => true];
 
     /**
      * колонки которые использовать при отображении
@@ -81,7 +81,8 @@ class HandpickedList extends Widget
      * Собственный список отмеченных элементов
      * @var array [1, 56, 89]
      */
-    public $customSelection = [4];
+    public $customSelection = [];
+
     /**
      * Колонка для собственного списка отмеченных элементов
      * @var string
@@ -223,7 +224,6 @@ class HandpickedList extends Widget
             'hint' => $this->hint,
             'dataProvider' => $dataProvider,
             'selectedItems' => $this->selectdElements,
-            'bgLabels' => $this->bgLabels,
             'widgetID' => $this->id,
             'modelWithRelations' => $this->modelWithRelations,
             'selectionColumn' => $this->customSelectionColumn,
