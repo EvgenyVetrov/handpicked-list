@@ -75,6 +75,9 @@ JS;
 
 $this->registerJs($js);
 
+//\yii\helpers\VarDumper::dump($selectionColumn);
+//exit();
+
 ?>
 
 
@@ -117,7 +120,7 @@ $this->registerJs($js);
 
             <?php foreach ($selectedItems as $item): ?>
                 <li>
-                    <a href="<?= \yii\helpers\Url::toRoute(['widgets/update', 'id' => $item['id']]) ?>"><?= $item['name'] ?? array_values($item)[0] ?>
+                    <a href="<?= \yii\helpers\Url::toRoute([$linkAction, $selectionColumn => $item[$selectionColumn]]) ?>"><?= $item[$noLabelColumns[0]] ?? array_values($item)[0] ?>
 
                         <?php //перебираем лейблы
                             foreach ($item as $key => $value):

@@ -98,6 +98,12 @@ class HandpickedList extends Widget
     public $modelWithRelations = '';
 
     /**
+     * контроллер/экшн для перехода при клике на выбранные элементы
+     * @var string
+     */
+    public $linkAction = '';
+
+    /**
      * Все элементы после обработки данных
      * @var array
      */
@@ -227,7 +233,8 @@ class HandpickedList extends Widget
             'widgetID' => $this->id,
             'modelWithRelations' => $this->modelWithRelations,
             'selectionColumn' => $this->customSelectionColumn,
-            'noLabelColumns' => $this->getNoLabelColumns()
+            'noLabelColumns' => $this->getNoLabelColumns(),
+            'linkAction' => $this->linkAction,
         ]);
     }
 }
