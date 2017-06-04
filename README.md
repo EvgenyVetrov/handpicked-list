@@ -156,6 +156,11 @@ and savings via `manageWidgets` relation.
 
 &nbsp;
 
+## Warring!:
+**Widget has no paginate! Don`t use it if you have more than 1000 elements.**
+&nbsp;
+
+
 ## About:
 On GitHub: https://github.com/EvgenyVetrov/handpicked-list  
 On Packagist: https://packagist.org/packages/atlant5/handpicked-list
