@@ -55,7 +55,7 @@ $js = <<<JS
         
         for (var i=0; i<list.length; i++){
             console.log("#has-elements-"+widgetPostfix);
-            $("#has-elements-"+widgetPostfix).append('<li><input type="hidden" name="GeneralPages[manageWidgets][]" value="'+list[i].id+'"><a href="#">'+list[i].textField+list[i].labels+'</a></li>');
+            $("#has-elements-"+widgetPostfix).append('<li><input type="hidden" name="$modelWithRelations\[\]" value="'+list[i].id+'"><a href="#">'+list[i].textField+list[i].labels+'</a></li>');
         }
         
         return list.length;
@@ -111,7 +111,7 @@ $this->registerJs($js);
     </div>
     <!-- /.box-header -->
     <div class="box-body no-padding">
-        <input type="hidden" name="GeneralPages[manageWidgets][]" value="">
+       <!-- по ходу бесполезная строчка <input type="hidden" name="GeneralPages[manageWidgets][]" value="">-->
         <div class="text-center" id="no-elements-<?=$widgetID?>">Нет элементов</div>
         <ul class="nav nav-stacked" id="has-elements-<?=$widgetID?>">
 
@@ -120,13 +120,10 @@ $this->registerJs($js);
                     <a href="<?= \yii\helpers\Url::toRoute(['widgets/update', 'id' => $item['id']]) ?>"><?= $item['name'] ?? array_values($item)[0] ?>
 
                         <?php //перебираем лейблы
-                            $i=0;
                             foreach ($item as $key => $value):
-                            if ($key == 'name' OR $key == 'checked') { continue; } ?>
-                            <span class="pull-right"> &nbsp;</span>  <span class="pull-right badge <?= $bgLabels[$i++]  ?>"><?= $value ?></span>
-                        <?php
-                            if (count($bgLabels) <= $i) { $i = 0; }
-                            endforeach; ?>
+                            if (in_array($key, $noLabelColumns)) { continue; } ?>
+                            <span class="pull-right"> &nbsp;</span>  <span class="pull-right badge"><?= $value ?></span>
+                        <?php endforeach; ?>
                     </a>
                 </li>
             <?php endforeach; ?>
@@ -164,6 +161,7 @@ $this->registerJs($js);
                 <div class="box-body no-padding">
 
                     <div style="overflow: scroll; height: 300px;">
+
                         <?= \yii\grid\GridView::widget([
                             'tableOptions' => [
                                 'id' => 'handpicked-list-'.$widgetID,
@@ -176,26 +174,23 @@ $this->registerJs($js);
                             'columns' => [
                                 [
                                     'class' => 'yii\grid\CheckboxColumn',
-                                    /* todo некая функция которая передает отмеченные чекбоксы из попапа в оранжевую штуку */
-                                    'checkboxOptions' =>  function ($model, $key, $index, $column) {
+                                    'checkboxOptions' =>  function ($model, $key, $index, $column) use($selectionColumn) {
 
                                         return [
-                                                 'checked' => $model['checked'],
-                                                 'value' => $model['id'],
+                                                 'checked' => $model['selected-item'],
+                                                 'value' => $model[$selectionColumn],
                                              ];
                                         },
                                 ],
-                                'name',
+                                $noLabelColumns[0],
                                 [
                                     'attribute' => '',
                                     'label' => '',
                                     'format' => 'html',
-                                    'value' => function($model){
-                                        \yii\helpers\ArrayHelper::remove($model, 'name');
-                                        \yii\helpers\ArrayHelper::remove($model, 'checked');
-                                        \yii\helpers\ArrayHelper::remove($model, 'id');
+                                    'value' => function($model) use($noLabelColumns) {
                                         $values = [];
-                                        foreach ($model as $value){
+                                        foreach ($model as $key => $value){
+                                            if (in_array($key, $noLabelColumns)) { continue; } //пропускаем все элементы которые не предназначены для лейблов
                                             $values[] = '<span class="pull-right badge bg-aqua">'.\yii\helpers\Html::encode($value).'</span>';
                                         }
                                         return implode('&nbsp; ', $values);
